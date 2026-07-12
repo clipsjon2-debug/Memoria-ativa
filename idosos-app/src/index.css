@@ -1,0 +1,210 @@
+/* ============================================================
+   ESTILO GLOBAL — pensado para acessibilidade de idosos
+   - Fontes grandes
+   - Alto contraste
+   - Área de toque mínima de 64px (recomendação de acessibilidade)
+   - Sem animações agressivas, sem poluição visual
+   ============================================================ */
+
+:root {
+  --cor-fundo: #FAF7F0;         /* bege claro, suave, sem brilho forte */
+  --cor-texto: #1A1A1A;         /* quase preto, alto contraste */
+  --cor-primaria: #2B6E4E;      /* verde escuro, calmo */
+  --cor-primaria-clara: #3E8A66;
+  --cor-secundaria: #1F5FA8;    /* azul, para ações secundárias */
+  --cor-perigo: #B23A2E;        /* vermelho, só para "Sair"/erros */
+  --cor-sucesso: #2B6E4E;
+  --cor-cartao: #FFFFFF;
+  --cor-borda: #D8D0C0;
+
+  --fonte-base: 22px;
+  --fonte-titulo: 34px;
+  --fonte-botao: 26px;
+
+  --espaco-sm: 12px;
+  --espaco-md: 20px;
+  --espaco-lg: 32px;
+  --espaco-xl: 48px;
+
+  --toque-min: 64px;
+  --raio: 18px;
+
+  font-size: var(--fonte-base);
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--cor-fundo);
+  color: var(--cor-texto);
+  font-family: "Segoe UI", Verdana, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  /* evita "zoom" acidental duplo-toque, mas mantém acessibilidade de zoom manual */
+  touch-action: manipulation;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  max-width: 560px;
+  margin: 0 auto;
+  min-height: 100vh;
+}
+
+h1, h2, h3 {
+  margin: 0 0 var(--espaco-md) 0;
+  line-height: 1.25;
+}
+
+h1 { font-size: var(--fonte-titulo); }
+h2 { font-size: 28px; }
+
+p { line-height: 1.5; }
+
+button {
+  font-family: inherit;
+}
+
+/* Botão grande padrão — usado em todo o app */
+.botao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 100%;
+  min-height: var(--toque-min);
+  font-size: var(--fonte-botao);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--raio);
+  padding: 18px 20px;
+  cursor: pointer;
+  background: var(--cor-primaria);
+  color: #FFFFFF;
+  transition: transform 0.05s ease, filter 0.15s ease;
+}
+
+.botao:active {
+  transform: scale(0.97);
+  filter: brightness(0.92);
+}
+
+.botao--secundario {
+  background: var(--cor-secundaria);
+}
+
+.botao--neutro {
+  background: #FFFFFF;
+  color: var(--cor-texto);
+  border: 3px solid var(--cor-borda);
+}
+
+.botao--perigo {
+  background: var(--cor-perigo);
+}
+
+.botao--grande {
+  min-height: 88px;
+  font-size: 30px;
+}
+
+.botao:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.tela {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--espaco-lg) var(--espaco-md);
+  gap: var(--espaco-md);
+}
+
+.tela__topo {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--espaco-sm);
+}
+
+.pilha {
+  display: flex;
+  flex-direction: column;
+  gap: var(--espaco-md);
+}
+
+.cartao {
+  background: var(--cor-cartao);
+  border: 2px solid var(--cor-borda);
+  border-radius: var(--raio);
+  padding: var(--espaco-md);
+}
+
+.texto-central {
+  text-align: center;
+}
+
+.texto-suave {
+  color: #555;
+  font-size: 18px;
+}
+
+.icone-voltar {
+  min-width: var(--toque-min);
+  min-height: var(--toque-min);
+  border-radius: 50%;
+  background: #FFFFFF;
+  border: 3px solid var(--cor-borda);
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.icone-voltar:active {
+  filter: brightness(0.92);
+}
+
+/* barra de progresso simples */
+.progresso-barra {
+  width: 100%;
+  height: 18px;
+  background: #EEE6D6;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 2px solid var(--cor-borda);
+}
+
+.progresso-barra__preenchido {
+  height: 100%;
+  background: var(--cor-primaria-clara);
+  transition: width 0.3s ease;
+}
+
+.mensagem-feedback {
+  text-align: center;
+  font-size: 26px;
+  font-weight: 700;
+  border-radius: var(--raio);
+  padding: var(--espaco-md);
+}
+
+.mensagem-feedback--certo {
+  background: #E4F3EA;
+  color: var(--cor-primaria);
+}
+
+.mensagem-feedback--errado {
+  background: #FBEAE8;
+  color: var(--cor-perigo);
+}
